@@ -12,7 +12,7 @@ npm install hapi-newrelic
 
 ## Usage
 
-```js
+```javascript
 // CommonJS
 // const HapiNewRelic = require('hapi-newrelic');
 
