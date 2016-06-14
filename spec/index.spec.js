@@ -60,7 +60,7 @@ describe('HapiNewRelic', () => {
     });
 
     describe('AND the route does NOT have a transaction name configured for the plugin', () => {
-      it('should not overwrite the default transaction name for New Relic', done => {
+      it('should NOT set a transaction name for New Relic', done => {
         const newrelic = createNewRelicStub();
 
         const onPreResponse = () => {
