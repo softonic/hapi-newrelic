@@ -1,6 +1,6 @@
 {
   "name": "hapi-newrelic",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Rubén Norte <ruben.norte@softonic.com>",
   "description": "Hapi plugin to configure transaction names for routes",
   "license": "Apache-2.0",
@@ -20,7 +20,7 @@
     "pretest": "npm run lint",
     "test": "jasmine",
     "prebuild": "npm run test",
-    "build": "rm -rf lib && babel es -d lib",
+    "build": "rm -rf lib && babel es -d lib --source-maps",
     "prerelease": "npm run build",
     "release": "npm version -m \"New version: %s\"",
     "postrelease": "npm run push && npm publish",
@@ -34,10 +34,5 @@
     "eslint-config-airbnb": "^3.1.0",
     "hapi": "^13.0.0",
     "jasmine": "^2.4.1"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
   }
 }
