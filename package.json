@@ -5,10 +5,10 @@
   "description": "Hapi plugin to configure transaction names for routes",
   "license": "Apache-2.0",
   "main": "index.js",
-  "homepage": "https://stash.redtonic/projects/NODE/repos/hapi-newrelic",
+  "homepage": "https://github.com/softonic/hapi-newrelic",
   "repository": {
     "type": "git",
-    "url": "ssh://git@stash.redtonic:7999/projects/NODE/repos/hapi-newrelic.git"
+    "url": "git+https://github.com/softonic/hapi-newrelic.git"
   },
   "files": [
     "es",
