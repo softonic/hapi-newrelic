@@ -60,7 +60,7 @@ describe('HapiNewRelic', () => {
     });
 
     describe('AND the route does NOT have a transaction name configured for the plugin', () => {
-      describe('AND the request plugins does have a transaction name configured for the plugin',
+      describe('AND the request does have a transaction name configured for the plugin',
         () => {
           it('should use it as the transaction name for New Relic', done => {
             const newrelic = createNewRelicStub();
@@ -91,7 +91,7 @@ describe('HapiNewRelic', () => {
           });
         });
 
-      describe('AND the request plugins does NOT have a transaction name configured for the plugin',
+      describe('AND the request does NOT have a transaction name configured for the plugin',
         () => {
           it('should NOT set a transaction name for New Relic', done => {
             const newrelic = createNewRelicStub();
