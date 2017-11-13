@@ -60,24 +60,57 @@ describe('HapiNewRelic', () => {
     });
 
     describe('AND the route does NOT have a transaction name configured for the plugin', () => {
-      it('should NOT set a transaction name for New Relic', done => {
-        const newrelic = createNewRelicStub();
+      describe('AND the request app does have a transaction name configured for the plugin', () => {
+        it('should use it as the transaction name for New Relic', done => {
+          const newrelic = createNewRelicStub();
 
-        const onPreResponse = () => {
-          expect(newrelic.setTransactionName).not.toHaveBeenCalled();
-          done();
-        };
+          const onPreResponse = () => {
+            expect(newrelic.setTransactionName).toHaveBeenCalledWith('foo-transaction');
+            done();
+          };
 
-        const server = createServerWithPlugin({ onPreResponse, newrelic });
+          const server = createServerWithPlugin({ onPreResponse, newrelic });
 
-        server.route({
-          method: 'GET',
-          path: '/test',
-          handler: okHandler
+          server.route({
+            method: 'GET',
+            path: '/test',
+            handler: okHandler
+          });
+
+          // eslint-disable-next-line quote-props
+          server.inject({
+            method: 'GET',
+            url: '/test',
+            plugins: {
+              'hapi-newrelic': {
+                transactionName: 'foo-transaction'
+              }
+            }
+          });
         });
-
-        server.inject({ method: 'GET', url: '/test' });
       });
+
+      describe('AND the request app does NOT have a transaction name configured for the plugin',
+        () => {
+          it('should NOT set a transaction name for New Relic', done => {
+            const newrelic = createNewRelicStub();
+
+            const onPreResponse = () => {
+              expect(newrelic.setTransactionName).not.toHaveBeenCalled();
+              done();
+            };
+
+            const server = createServerWithPlugin({ onPreResponse, newrelic });
+
+            server.route({
+              method: 'GET',
+              path: '/test',
+              handler: okHandler
+            });
+
+            server.inject({ method: 'GET', url: '/test' });
+          });
+        });
     });
   });
 });
