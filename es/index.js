@@ -44,8 +44,8 @@ const HapiNewRelic = {
     server.ext('onPreResponse', (request, reply) => {
       const config = Object.assign(
         {},
-        request.route.settings.plugins['hapi-newrelic'],
-        request.plugins['hapi-newrelic']
+        request.route.settings.plugins[packageJSON.name],
+        request.plugins[packageJSON.name]
       );
       const transactionName = config && config.transactionName;
 
